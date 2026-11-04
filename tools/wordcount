@@ -1,0 +1,3 @@
+#!/bin/sh
+# Word count of each file, the way most application portals count (whitespace-separated words).
+for f in "$@"; do printf '%6d  %s\n' "$(wc -w < "$f")" "$f"; done

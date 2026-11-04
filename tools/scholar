@@ -1,0 +1,10 @@
+#!/bin/sh
+# OpenAlex lookups, reusing hioffer's scholar tool (cached, rate-limit aware). No LLM involved.
+#   tools/scholar find "Noah Smith" "University of Washington"
+#   tools/scholar works A5012345678 [since_year]
+#   tools/scholar coauthors A5012345678 [since_year]
+#   tools/scholar profile A5012345678
+HERE=$(cd "$(dirname "$0")/.." && pwd)
+HIOFFER=${HIOFFER_DIR:-$HOME/Documents/hioffer}
+export HIOFFER_CACHE_DIR="$HERE/.cache/openalex"
+exec uv run --quiet --project "$HIOFFER" python "$HERE/tools/scholar.py" "$@"
