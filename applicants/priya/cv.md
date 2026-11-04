@@ -6,6 +6,7 @@
 ## Research experience
 - **Undergraduate researcher, AI4Bharat-style multilingual NLP lab at NIT Trichy** (Jan 2025 – present), advised by Prof. S. Venkatesan.
   Built a Tamil–English code-switched evaluation set of 2,400 sentences; showed that two open 7B models lose 18–26 points on code-switched inputs versus monolingual Tamil. Led to a workshop paper.
+  Task: 3-way sentiment and 12-way intent classification; the drop is in accuracy points against matched monolingual Tamil sentences. Gold labels from two native-speaker annotators (Cohen's kappa 0.81). Sentences were collected from public social-media posts and are a mix of Tamil script and romanized Tamil; script was not controlled separately.
 - **Research intern, Microsoft Research India (Bangalore), summer 2026** (May–July 2026), mentor: Dr. Anjali Mehra.
   Worked on tokenizer adaptation for Kannada: extending a sentencepiece vocabulary with 6k Kannada tokens cut average token count per sentence by 41% and improved downstream QA F1 by 3.4 points at the same fine-tuning budget.
 - **Course project, Speech Processing (Spring 2026):** trained a small wav2vec2-style model on 40 hours of Tamil radio audio; WER 31% on a held-out set.
