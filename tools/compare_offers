@@ -1,0 +1,65 @@
+#!/usr/bin/env -S uv run --quiet --script
+# /// script
+# requires-python = ">=3.10"
+# dependencies = ["pyyaml"]
+# ///
+"""Transparent offer comparison (ported from hioffer's decider). No model involved.
+
+  tools/compare_offers board/offers.yaml
+
+board/offers.yaml, one entry per admit, every number from the offer letter or an official page:
+  - program: UMD CS PhD
+    advisor: Marine Carpuat
+    fit: 4                  # 1-5, mentor's call, with its reason in board/
+    stipend_usd: 38000      # per year, from the offer letter
+    years_guaranteed: 5
+    rent_usd_month: 1900    # funder's sourced estimate for a one-bedroom or room near campus
+    signals: [interview, reply_positive]   # from the room: interview, reply_positive, reply_negative, ...
+
+Weights are printed so the applicant can argue with them, and can be overridden: --weights fit=0.4,money=0.3,...
+"""
+import sys
+
+import json
+import re
+
+WEIGHTS = {"fit": 0.35, "money": 0.30, "signals": 0.20, "guarantee": 0.15}
+POS, NEG = {"reply_positive", "interview", "admit", "funding_offer", "visit"}, {"reply_negative", "reject"}
+
+
+def load(path):
+    try:
+        import yaml  # noqa
+        return yaml.safe_load(open(path))
+    except ImportError:
+        return json.load(open(path))
+
+
+args = sys.argv[1:]
+if not args:
+    sys.exit(__doc__)
+if "--weights" in args:
+    i = args.index("--weights")
+    for kv in args[i + 1].split(","):
+        k, v = kv.split("=")
+        WEIGHTS[k] = float(v)
+    del args[i : i + 2]
+offers = load(args[0])
+left = [(o.get("stipend_usd") or 0) - 12 * (o.get("rent_usd_month") or 0) for o in offers]
+top = max(left) if left and max(left) > 0 else 1
+rows = []
+for o, after_rent in zip(offers, left):
+    sig = o.get("signals") or []
+    pos, neg = sum(s in POS for s in sig), sum(s in NEG for s in sig)
+    sub = {
+        "fit": (o.get("fit") or 0) / 5,
+        "money": max(0.0, after_rent) / top,
+        "signals": max(0.0, min(1.0, 0.5 + 0.15 * pos - 0.3 * neg)),
+        "guarantee": min(o.get("years_guaranteed") or 0, 5) / 5,
+    }
+    rows.append((round(sum(WEIGHTS[k] * v for k, v in sub.items()), 3), o, sub, after_rent))
+rows.sort(key=lambda r: -r[0])
+print("weights:", ", ".join(f"{k} {v}" for k, v in WEIGHTS.items()))
+print(f"{'program':28} {'total':>6} {'fit':>5} {'money':>6} {'signal':>6} {'guar':>5}  stipend after rent")
+for total, o, sub, after_rent in rows:
+    print(f"{o['program'][:28]:28} {total:6.3f} {sub['fit']:5.2f} {sub['money']:6.2f} {sub['signals']:6.2f} {sub['guarantee']:5.2f}  ${after_rent:,.0f}/yr")

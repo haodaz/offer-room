@@ -1,0 +1,85 @@
+#!/usr/bin/env -S uv run --quiet --script
+# /// script
+# requires-python = ">=3.10"
+# dependencies = ["pyyaml"]
+# ///
+"""Deterministic checks on a draft before any person reads it. No model involved.
+
+  tools/check_draft board/drafts/umd-fit-v1.md [--limit 250]
+
+- Word count (portal style), and over/under the limit when one is given.
+- Every sentence carries at least one [source] tag.
+- Every tag resolves: [cv], [interests], [sop_draft], [profile], [recommenders] must be files in applicants/<name>/ (the name is taken from board/<name>/...);
+  [cv:12] must be a real line; [W123...] / [mentor: W123] must be an OpenAlex work id a tool actually returned
+  (.cache/openalex), or one recorded in board/ or agents/*/memory.md; [scout: URL] must be a URL that appears in board/.
+Exit code 1 when anything fails, so an agent can loop until it passes.
+"""
+import re
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+args = sys.argv[1:]
+if not args:
+    sys.exit(__doc__)
+limit = None
+if "--limit" in args:
+    i = args.index("--limit")
+    limit = int(args[i + 1])
+    del args[i : i + 2]
+path = Path(args[0]).resolve()
+APPLICANT = ROOT / "applicants" / path.relative_to(ROOT / "board").parts[0]
+text = path.read_text(encoding="utf-8")
+body = re.sub(r"^#.*$", "", text, flags=re.M)  # headings are not counted or checked
+
+# Evidence the room has actually seen: board notes (not drafts), agent notebooks, and every OpenAlex response the
+# tools fetched (.cache/openalex). A paper id is real only if a tool returned it.
+evidence = [f for f in list((ROOT / "board").rglob("*.md")) + list((ROOT / "board").rglob("*.yaml")) if "drafts" not in f.parts]
+evidence += list((ROOT / "agents").glob("*/memory.md")) + list((ROOT / ".cache" / "openalex").glob("*.json"))
+seen = "\n".join(f.read_text(encoding="utf-8", errors="ignore") for f in evidence)
+problems = []
+
+words = len(re.sub(r"\[[^\]]*\]", "", body).split())
+line = f"words (tags excluded): {words}"
+if limit:
+    line += f" / limit {limit}" + ("  OVER" if words > limit else "")
+    if words > limit:
+        problems.append(f"over the limit by {words - limit} words")
+print(line)
+
+sentences = [s.strip() for s in re.split(r"(?<=[.!?])\s+(?=[A-Z\"“])", re.sub(r"\s+", " ", body)) if len(s.strip().split()) > 3]
+untagged = [s for s in sentences if not re.search(r"\[[^\]]+\]", s)]
+for s in untagged:
+    problems.append(f"no source: {s[:90]}")
+
+for tag in sorted(set(re.findall(r"\[([^\]]+)\]", body))):
+    for part in [p.strip() for p in tag.split(";")]:
+        m = re.match(r"^(cv|interests|sop_draft|profile|recommenders|programs)(?::(\d+))?$", part)
+        if m:
+            f = APPLICANT / (m.group(1) + (".yaml" if m.group(1) == "programs" else ".md"))
+            if not f.exists():
+                problems.append(f"[{part}] no such file")
+            elif m.group(2) and int(m.group(2)) > len(f.read_text().splitlines()):
+                problems.append(f"[{part}] line out of range")
+            continue
+        w = re.search(r"\b(W\d{6,})\b", part)
+        if w:
+            if w.group(1) not in seen:
+                problems.append(f"[{part}] no tool returned this paper id")
+            continue
+        u = re.search(r"https?://\S+", part)
+        if u:
+            if u.group(0).rstrip(").,") not in seen:
+                problems.append(f"[{part}] URL not found in board/")
+            continue
+        if part.split(":")[0].strip() in {"scout", "mentor", "funder", "interviewer", "critic", "writer", "applicant"}:
+            continue  # a pointer to something said in the room; the critic reads it
+        problems.append(f"[{part}] unknown tag")
+
+print(f"sentences: {len(sentences)}, untagged: {len(untagged)}")
+if problems:
+    print("FAIL")
+    for p in problems:
+        print(" -", p)
+    sys.exit(1)
+print("PASS")

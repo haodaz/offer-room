@@ -1,24 +1,69 @@
 # offer room
 
-Four AI agents and an applicant in one team chat, built for the Flip the Switch hackathon (Nov 2026).
+**Six AI agents and an applicant in one team chat, built with [Switch](https://github.com/sandbox-quantum/switch) for the Flip the Switch hackathon (Nov 2026).**
 
-Each agent starts from a different place and is allowed to disagree:
+Applying to a PhD program is a team sport most people play alone. Offer room gives an applicant a team that lives
+where they already talk (Discord here; the same template runs on Slack or Teams): agents that each start from a
+different place, check each other in the open, and leave every decision and every send to the person.
 
-| Agent | Starts from | Tends to argue for |
-|---|---|---|
-| offer-scout | programs' official pages | feasibility: deadlines, requirements, funding |
-| offer-mentor | advisors' papers and students (OpenAlex) | fit and mentorship over prestige |
-| offer-critic | the applicant's own record, read cold | honesty about what the record supports |
-| offer-writer | the applicant's materials | one coherent story across programs |
+Getting in is the start, not the finish. The room looks long (the five years after an admit: who you work with,
+what you live on, where people from that lab went next), looks real (only what a page, a tool or your own files
+show) and connects the steps (school list, materials, money, interviews and offers are one story).
 
-A question runs as a relay: scout, then mentor, then critic. Every reply after the first opens with
-agree, building on, or I disagree, and critic closes with where the team agrees, where it splits, and
-what only the applicant can decide. The applicant decides and sends; agents never email, submit or pay.
+## The team
 
-- Room rules: [CLAUDE.md](CLAUDE.md). Each agent's harness: `agents/<name>/AGENT.md`.
-- Switch template (paste into Switch Console): [offer-room.template.yaml](offer-room.template.yaml).
-- The demo applicant in `applicant/` is fictional (from hioffer). The target programs are real public pages.
-- OpenAlex lookups reuse [hioffer](https://github.com/haodaz/hioffer)'s scholar tool through `tools/scholar`.
+| Agent | Starts from | Tends to argue for | One to one |
+|---|---|---|---|
+| offer-scout | programs' official pages | feasibility: deadlines, letters, small print | the application calendar |
+| offer-mentor | advisors' papers, students, where they went (OpenAlex) | fit and outcomes over prestige | research direction |
+| offer-critic | the applicant's own record, read cold | honesty about what the record supports | cold reads of every draft |
+| offer-writer | the applicant's files | one coherent story | SOP, emails, recommender packets |
+| offer-funder | fees, waivers, fellowships, stipends, rent | money is part of fit | a funding plan, offer comparison |
+| offer-interviewer | one advisor's verified papers and page | depth that survives a follow-up | mock interviews, scored |
 
-The same room works for a job search: swap programs for roles, the mentor for someone who reads the team,
-and the critic for a hiring manager.
+Each agent is a Claude Code session with its own harness (`agents/<name>/AGENT.md`: what it knows, its tools,
+its bias, its one-to-one work) and its own notebook (`agents/<name>/memory.md`), so it is the same person every
+time the applicant comes back.
+
+## How they work together
+
+- **Relay with stances.** A team question goes scout → mentor (→ funder) → critic. Every reply after the first
+  opens with *Agree*, *Building on* or *I disagree with X on Y*, with evidence. Critic closes with where the team
+  agrees, where it splits, and what only the applicant can decide.
+- **Changing minds in public.** When new evidence contradicts an agent, it says "Correction: I was wrong about X"
+  first. One rebuttal per point, then it goes back to the person.
+- **One-to-one desks.** `interview-room`, `mentor-room`, `funding-desk`, `writing-desk` for long work; a summary
+  comes back to the team room only when the applicant says so.
+- **Humans act.** No agent emails, submits, pays or contacts anyone.
+
+## Trust, checked by code
+
+- `tools/check_draft`: every sentence of a draft must carry a source tag; file and line tags must resolve; a paper
+  id passes only if an OpenAlex call actually returned it. Exit code 1 until it passes.
+- `tools/scholar`: OpenAlex lookups (reusing [hioffer](https://github.com/haodaz/hioffer)'s cached client):
+  `schools`, `topic`, `find`, `works`, `coauthors`, `alumni`, `profile`.
+- `tools/compare_offers`: transparent offer scoring (fit, stipend after rent, signals, years guaranteed) with
+  weights the applicant can change.
+
+## The whole application
+
+`CLAUDE.md` maps ten steps (direction, requirements, advisors, calendar, recommenders, materials, outreach, money,
+interviews, offers) to an owner and a checker. Shared state lives in `board/<applicant>/` (tracker, plan, decisions,
+drafts, interviews, funding).
+
+## Demo applicants
+
+Both are fictional; the programs and advisors are real public pages and papers.
+- **Priya** (`applicants/priya/`): international applicant from India, multilingual NLP.
+- **Maya** (`applicants/maya/`): first-generation US applicant and Pell recipient, code-switched speech. Same room,
+  different money: fee waivers and fellowships depend on eligibility, and funder quotes the line for each.
+
+## Run it
+
+1. Install [Switch Console](https://github.com/sandbox-quantum/switch), sign in to Claude Code, connect a chat app.
+2. Clone this repo; hioffer next to it for `tools/scholar` (`HIOFFER_DIR` overrides the path); `uv` installed.
+3. Import `offer-room.template.yaml` in Switch Console, set the directory to this repo, pick your chat app, run.
+   (`offer-room-desks.template.yaml` adds the funder, interviewer and desks to an earlier four-agent room.)
+
+The same room works for a job search or college applications: swap programs for roles or colleges, the mentor's
+labs for teams, and keep the rest.

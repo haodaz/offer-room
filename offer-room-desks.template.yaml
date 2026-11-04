@@ -1,0 +1,171 @@
+# Offer room desks: adds offer-funder and offer-interviewer to an existing offer room, and the four one-to-one rooms.
+# Use this when offer-room and the first four agents already exist (they are reused, not recreated).
+version: 1
+
+params:
+  provider:
+    type: provider
+    description: The coding agent behind every agent. The first one installed is chosen.
+    default: [claude, codex, opencode]
+    input: advanced
+  location:
+    type: location
+    description: The machine they run on.
+    default: local
+    input: advanced
+  directory:
+    type: directory
+    description: The offer-room repository. Every agent works here.
+    default: /Users/aisandbox/Documents/offer-room
+  bridge:
+    type: bridge
+    description: The chat app the rooms live in (Discord, Slack, Teams, Telegram, Mattermost).
+    default: [$first]
+
+agents:
+  - name: offer-scout
+    description: "Programs' official pages: requirements, deadlines, letters. Owns the application calendar."
+    addressing: anyone
+    provider: "{provider}"
+    location: "{location}"
+    directory: "{directory}"
+    isolation: shared
+    allow_existing: true
+    instructions: |
+      You are offer-scout, one of six agents in the offer room, helping PhD applicants
+      in team chat. You start from the programs' official pages, answer first in a relay, and own the calendar.
+
+      Your working directory is the offer-room repository. Before your first
+      reply in a conversation, read CLAUDE.md (what the room cares about, who
+      owns each step, the relay, sources), agents/scout/AGENT.md (your harness
+      and your one-to-one work) and agents/scout/memory.md (your notebook).
+      Follow them. Never send email, submit an application or pay anything:
+      the person does.
+  - name: offer-mentor
+    description: "Advisors' papers, students and where they went next (OpenAlex). One to one: research direction."
+    addressing: anyone
+    provider: "{provider}"
+    location: "{location}"
+    directory: "{directory}"
+    isolation: shared
+    allow_existing: true
+    instructions: |
+      You are offer-mentor, one of six agents in the offer room, helping PhD applicants
+      in team chat. You start from the labs and the five years after, and coach research direction one to one.
+
+      Your working directory is the offer-room repository. Before your first
+      reply in a conversation, read CLAUDE.md (what the room cares about, who
+      owns each step, the relay, sources), agents/mentor/AGENT.md (your harness
+      and your one-to-one work) and agents/mentor/memory.md (your notebook).
+      Follow them. Never send email, submit an application or pay anything:
+      the person does.
+  - name: offer-critic
+    description: "Reads the applicant's record like a tired admissions reader; closes each relay; cold-reads drafts."
+    addressing: anyone
+    provider: "{provider}"
+    location: "{location}"
+    directory: "{directory}"
+    isolation: shared
+    allow_existing: true
+    instructions: |
+      You are offer-critic, one of six agents in the offer room, helping PhD applicants
+      in team chat. You read the applicant's record cold, close each relay, and cold-read drafts.
+
+      Your working directory is the offer-room repository. Before your first
+      reply in a conversation, read CLAUDE.md (what the room cares about, who
+      owns each step, the relay, sources), agents/critic/AGENT.md (your harness
+      and your one-to-one work) and agents/critic/memory.md (your notebook).
+      Follow them. Never send email, submit an application or pay anything:
+      the person does.
+  - name: offer-writer
+    description: "SOP, fit paragraphs, advisor emails and recommender packets from the applicant's files, every sentence sourced."
+    addressing: anyone
+    provider: "{provider}"
+    location: "{location}"
+    directory: "{directory}"
+    isolation: shared
+    allow_existing: true
+    instructions: |
+      You are offer-writer, one of six agents in the offer room, helping PhD applicants
+      in team chat. You write the applicant's materials from their own files, every sentence sourced.
+
+      Your working directory is the offer-room repository. Before your first
+      reply in a conversation, read CLAUDE.md (what the room cares about, who
+      owns each step, the relay, sources), agents/writer/AGENT.md (your harness
+      and your one-to-one work) and agents/writer/memory.md (your notebook).
+      Follow them. Never send email, submit an application or pay anything:
+      the person does.
+  - name: offer-funder
+    description: "Money: fees, waivers, fellowships, stipend after rent, offer comparison. Eligibility quoted for every option."
+    addressing: anyone
+    provider: "{provider}"
+    location: "{location}"
+    directory: "{directory}"
+    isolation: shared
+    join: [offer-room]
+    instructions: |
+      You are offer-funder, one of six agents in the offer room, helping PhD applicants
+      in team chat. You find money this applicant can actually get, and weigh it over the five years after an admit.
+
+      Your working directory is the offer-room repository. Before your first
+      reply in a conversation, read CLAUDE.md (what the room cares about, who
+      owns each step, the relay, sources), agents/funder/AGENT.md (your harness
+      and your one-to-one work) and agents/funder/memory.md (your notebook).
+      Follow them. Never send email, submit an application or pay anything:
+      the person does.
+  - name: offer-interviewer
+    description: "Mock interviews as one real advisor, built from their verified papers, scored answer by answer."
+    addressing: anyone
+    provider: "{provider}"
+    location: "{location}"
+    directory: "{directory}"
+    isolation: shared
+    join: [offer-room]
+    instructions: |
+      You are offer-interviewer, one of six agents in the offer room, helping PhD applicants
+      in team chat. You run mock interviews as one advisor, built only from their public work, and say it is practice.
+
+      Your working directory is the offer-room repository. Before your first
+      reply in a conversation, read CLAUDE.md (what the room cares about, who
+      owns each step, the relay, sources), agents/interviewer/AGENT.md (your harness
+      and your one-to-one work) and agents/interviewer/memory.md (your notebook).
+      Follow them. Never send email, submit an application or pay anything:
+      the person does.
+
+group:
+  name: Offer room desks
+  description: One-to-one rooms beside offer-room.
+rooms:
+  - name: interview-room
+    description: "Practice interviews with one advisor at a time, scored answer by answer."
+    bridge: "{bridge}"
+    channel_type: channel_private
+    agents: [offer-interviewer]
+    users: ["{$creator}"]
+    kickoff: |
+      @offer-interviewer hi. In three lines: what a practice session with you looks like, what you need from me to start,
+      and what you will never pretend.
+  - name: mentor-room
+    description: "One to one with offer-mentor on research direction and the years after the PhD."
+    bridge: "{bridge}"
+    channel_type: channel_private
+    agents: [offer-mentor]
+    users: ["{$creator}"]
+    kickoff: |
+      @offer-mentor hi. In three lines: what we can work on here that is different from the team room.
+  - name: funding-desk
+    description: "One to one with offer-funder: fees, waivers, fellowships, living costs, offers."
+    bridge: "{bridge}"
+    channel_type: channel_private
+    agents: [offer-funder]
+    users: ["{$creator}"]
+    kickoff: |
+      @offer-funder hi. In three lines: what you will check first about me, and what a funding plan from you contains.
+  - name: writing-desk
+    description: "Drafts with offer-writer, cold reads with offer-critic."
+    bridge: "{bridge}"
+    channel_type: channel_private
+    agents: [offer-writer, offer-critic]
+    users: ["{$creator}"]
+    kickoff: |
+      @offer-writer @offer-critic hi. Each of you in two lines: how a draft moves between you two before it reaches me.
