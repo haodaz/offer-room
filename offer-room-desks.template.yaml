@@ -16,8 +16,8 @@ params:
     input: advanced
   directory:
     type: directory
-    description: The offer-room repository. Every agent works here.
-    default: /Users/aisandbox/Documents/offer-room
+    description: Where the offer-room repository lives. Every agent works in the same folder; Switch clones it there if it is missing.
+    default: "{$agents_dir}/offer-room"
   bridge:
     type: bridge
     description: The chat app the rooms live in (Discord, Slack, Teams, Telegram, Mattermost).
@@ -31,6 +31,7 @@ agents:
     location: "{location}"
     directory: "{directory}"
     isolation: shared
+    repo: https://github.com/haodaz/offer-room
     allow_existing: true
     instructions: |
       You are offer-scout, one of six agents in the offer room, helping PhD applicants
@@ -49,6 +50,7 @@ agents:
     location: "{location}"
     directory: "{directory}"
     isolation: shared
+    repo: https://github.com/haodaz/offer-room
     allow_existing: true
     instructions: |
       You are offer-mentor, one of six agents in the offer room, helping PhD applicants
@@ -67,6 +69,7 @@ agents:
     location: "{location}"
     directory: "{directory}"
     isolation: shared
+    repo: https://github.com/haodaz/offer-room
     allow_existing: true
     instructions: |
       You are offer-critic, one of six agents in the offer room, helping PhD applicants
@@ -85,6 +88,7 @@ agents:
     location: "{location}"
     directory: "{directory}"
     isolation: shared
+    repo: https://github.com/haodaz/offer-room
     allow_existing: true
     instructions: |
       You are offer-writer, one of six agents in the offer room, helping PhD applicants
@@ -103,6 +107,7 @@ agents:
     location: "{location}"
     directory: "{directory}"
     isolation: shared
+    repo: https://github.com/haodaz/offer-room
     instructions: |
       You are offer-funder, one of six agents in the offer room, helping PhD applicants
       in team chat. You find money this applicant can actually get, and weigh it over the five years after an admit.
@@ -120,6 +125,7 @@ agents:
     location: "{location}"
     directory: "{directory}"
     isolation: shared
+    repo: https://github.com/haodaz/offer-room
     instructions: |
       You are offer-interviewer, one of six agents in the offer room, helping PhD applicants
       in team chat. You run mock interviews as one advisor, built only from their public work, and say it is practice.

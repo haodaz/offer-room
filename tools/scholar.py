@@ -1,18 +1,19 @@
-"""Command-line front for hioffer.tools.scholar. Prints JSON. Reads only the OPENALEX_* lines of hioffer's .env."""
+"""OpenAlex lookups for the agents. Prints JSON. Optional: OPENALEX_API_KEY / OPENALEX_MAILTO in the environment or
+in a .env file at the repo root (only OPENALEX_* lines are read)."""
 import json
 import os
 import sys
 from pathlib import Path
 
-env = Path(os.environ.get("HIOFFER_DIR", Path.home() / "Documents/hioffer")) / ".env"
+env = Path(__file__).resolve().parent.parent / ".env"
 if env.exists():
     for line in env.read_text().splitlines():
         if line.startswith("OPENALEX_") and "=" in line:
             k, v = line.split("=", 1)
             os.environ.setdefault(k.strip(), v.strip().strip('"'))
 
-sys.path.insert(0, str(env.parent))
-from hioffer.tools import scholar  # noqa: E402
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import openalex as scholar  # noqa: E402
 
 cmd, *args = sys.argv[1:] or ["help"]
 if cmd == "find":

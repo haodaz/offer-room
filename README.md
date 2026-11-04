@@ -40,7 +40,7 @@ time the applicant comes back.
 
 - `tools/check_draft`: every sentence of a draft must carry a source tag; file and line tags must resolve; a paper
   id passes only if an OpenAlex call actually returned it. Exit code 1 until it passes.
-- `tools/scholar`: OpenAlex lookups (reusing [hioffer](https://github.com/haodaz/hioffer)'s cached client):
+- `tools/scholar`: OpenAlex lookups with a disk cache (client vendored from [hioffer](https://github.com/haodaz/hioffer)):
   `schools`, `topic`, `find`, `works`, `coauthors`, `alumni`, `profile`.
 - `tools/compare_offers`: transparent offer scoring (fit, stipend after rent, signals, years guaranteed) with
   weights the applicant can change.
@@ -51,6 +51,10 @@ time the applicant comes back.
 interviews, offers) to an owner and a checker. Shared state lives in `board/<applicant>/` (tracker, plan, decisions,
 drafts, interviews, funding).
 
+## License
+
+MIT. Switch itself is licensed separately by SandboxAQ.
+
 ## Demo applicants
 
 Both are fictional; the programs and advisors are real public pages and papers.
@@ -60,10 +64,15 @@ Both are fictional; the programs and advisors are real public pages and papers.
 
 ## Run it
 
-1. Install [Switch Console](https://github.com/sandbox-quantum/switch), sign in to Claude Code, connect a chat app.
-2. Clone this repo; hioffer next to it for `tools/scholar` (`HIOFFER_DIR` overrides the path); `uv` installed.
-3. Import `offer-room.template.yaml` in Switch Console, set the directory to this repo, pick your chat app, run.
+1. Install [Switch Console](https://github.com/sandbox-quantum/switch) (macOS; it runs the Switch server locally),
+   sign in to Claude Code from it, and connect a chat app (Discord here; Mattermost, Slack, Teams or Telegram work too).
+2. Install [uv](https://docs.astral.sh/uv/). The tools run through it; nothing else to install.
+   Optional: an OpenAlex key in `.env` (`OPENALEX_API_KEY=...`) for a higher daily quota.
+3. In Switch Console, import `offer-room.template.yaml` and use it: pick your chat app and keep the default directory.
+   Switch creates the six agents, clones this repo into their folder, and opens offer-room plus the four desks.
    (`offer-room-desks.template.yaml` adds the funder, interviewer and desks to an earlier four-agent room.)
+4. In offer-room, ask `@offer-scout` a question about one of the applicants, for example:
+   `@offer-scout Priya (applicants/priya) can only afford two of UW, UMD and Cornell. Which two, and why?`
 
 The same room works for a job search or college applications: swap programs for roles or colleges, the mentor's
 labs for teams, and keep the rest.
