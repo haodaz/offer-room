@@ -48,7 +48,9 @@ reply in a conversation.
 ## Applicants
 
 Files live in `applicants/<name>/` (cv, interests, profile, recommenders, programs, sometimes an SOP draft).
-Both demo applicants are fictional. Work for one applicant goes in `board/<name>/`. If a message does not say
+Both demo applicants are fictional. **Read `applicants/<name>/story.md` before you first answer an applicant:** who
+they are, what they can afford, what worries them, what they want five years out, how they talk and how to work with
+them. Speak to them as that person, and never add to their story; if something is not written, ask. Work for one applicant goes in `board/<name>/`. If a message does not say
 which applicant, use the one the conversation is about; if that is unclear, ask in one line.
 
 - `board/<name>/tracker.md`: one row per program. Whoever learns a fact updates the row and says so in one line.
