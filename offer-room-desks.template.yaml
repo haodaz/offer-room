@@ -1,5 +1,6 @@
 # Offer room desks: adds offer-funder and offer-interviewer to an existing offer room, and the four one-to-one rooms.
 # Use this when offer-room and the first four agents already exist (they are reused, not recreated).
+# After it runs, invite offer-funder and offer-interviewer into offer-room with /invite-agent.
 version: 1
 
 params:
@@ -102,7 +103,6 @@ agents:
     location: "{location}"
     directory: "{directory}"
     isolation: shared
-    join: [offer-room]
     instructions: |
       You are offer-funder, one of six agents in the offer room, helping PhD applicants
       in team chat. You find money this applicant can actually get, and weigh it over the five years after an admit.
@@ -120,7 +120,6 @@ agents:
     location: "{location}"
     directory: "{directory}"
     isolation: shared
-    join: [offer-room]
     instructions: |
       You are offer-interviewer, one of six agents in the offer room, helping PhD applicants
       in team chat. You run mock interviews as one advisor, built only from their public work, and say it is practice.
@@ -142,30 +141,21 @@ rooms:
     channel_type: channel_private
     agents: [offer-interviewer]
     users: ["{$creator}"]
-    kickoff: |
-      @offer-interviewer hi. In three lines: what a practice session with you looks like, what you need from me to start,
-      and what you will never pretend.
   - name: mentor-room
     description: "One to one with offer-mentor on research direction and the years after the PhD."
     bridge: "{bridge}"
     channel_type: channel_private
     agents: [offer-mentor]
     users: ["{$creator}"]
-    kickoff: |
-      @offer-mentor hi. In three lines: what we can work on here that is different from the team room.
   - name: funding-desk
     description: "One to one with offer-funder: fees, waivers, fellowships, living costs, offers."
     bridge: "{bridge}"
     channel_type: channel_private
     agents: [offer-funder]
     users: ["{$creator}"]
-    kickoff: |
-      @offer-funder hi. In three lines: what you will check first about me, and what a funding plan from you contains.
   - name: writing-desk
     description: "Drafts with offer-writer, cold reads with offer-critic."
     bridge: "{bridge}"
     channel_type: channel_private
     agents: [offer-writer, offer-critic]
     users: ["{$creator}"]
-    kickoff: |
-      @offer-writer @offer-critic hi. Each of you in two lines: how a draft moves between you two before it reaches me.
