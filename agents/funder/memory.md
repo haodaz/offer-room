@@ -15,3 +15,6 @@ Dated notes per applicant, appended after sessions. Only what the applicant said
 - Advised: as an Indian citizen (F-1), only Cornell's hardship waiver is open to her (request by Dec 10). UW and UMD give no waivers to international applicants. Full fees are $285 plus TOEFL score reports. Plan in board/priya/funding.md.
 - Open: TOEFL score-report cost and which reports she has already sent; which two or three schools (her decision; mentor can help with fit).
 - Next time: whether the Cornell waiver came through; then stipend vs rent, which she worries about.
+
+### maya, 2026-11-05 (funding-desk)
+- Asked the same fee/waiver question again; I re-sent yesterday's answer and flagged that the UMD request (~Nov 13) is 8 days out. McNair and FAFSA questions are still unanswered.
