@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 480">
+  <defs><clipPath id="c"><rect x="0" y="0" width="400" height="480" rx="40"/></clipPath></defs>
+  <g clip-path="url(#c)">
+    <rect width="400" height="480" fill="#fdebd6"/>
+    <!-- Rock Fort temple on its hill, sun -->
+    <circle cx="300" cy="120" r="46" fill="#f8c98f"/>
+    <path d="M0 330 L60 300 L110 250 L150 228 L190 250 L240 290 L300 300 L400 280 L400 480 L0 480Z" fill="#f2c79d"/>
+    <rect x="135" y="196" width="34" height="34" fill="#e9b27f"/>
+    <path d="M131 198 L152 172 L173 198Z" fill="#e9b27f"/>
+    <rect x="148" y="160" width="8" height="14" fill="#e9b27f"/>
+    <!-- hair back + braid -->
+    <path d="M128 200 C120 120 280 110 274 205 L276 300 C276 330 250 330 250 300 L250 230 L150 230 L150 300 C150 330 124 330 126 300Z" fill="#2b1d17"/>
+    <path d="M262 290 C292 320 270 360 290 400 C300 420 284 430 276 412 C262 380 278 340 252 304Z" fill="#2b1d17"/>
+    <!-- shoulders: teal kurta with border -->
+    <path d="M90 480 C96 400 140 372 200 368 C260 372 304 400 310 480Z" fill="#2e7d7a"/>
+    <path d="M168 372 L200 420 L232 372" fill="none" stroke="#f3c56b" stroke-width="7" stroke-linejoin="round"/>
+    <!-- neck -->
+    <path d="M178 330 L178 376 C190 390 210 390 222 376 L222 330Z" fill="#8f5a3a"/>
+    <!-- face -->
+    <ellipse cx="200" cy="262" rx="66" ry="80" fill="#a8693f"/>
+    <!-- ears + small earrings -->
+    <ellipse cx="134" cy="268" rx="10" ry="16" fill="#9a5f39"/><ellipse cx="266" cy="268" rx="10" ry="16" fill="#9a5f39"/>
+    <circle cx="134" cy="290" r="4" fill="#f3c56b"/><circle cx="266" cy="290" r="4" fill="#f3c56b"/>
+    <!-- hair front: centre parting -->
+    <path d="M134 250 C130 196 170 176 200 182 C230 176 270 196 266 250 C250 214 222 200 200 198 C178 200 150 214 134 250Z" fill="#2b1d17"/>
+    <!-- glasses -->
+    <circle cx="174" cy="262" r="19" fill="none" stroke="#2b1d17" stroke-width="4"/>
+    <circle cx="226" cy="262" r="19" fill="none" stroke="#2b1d17" stroke-width="4"/>
+    <path d="M193 260 L207 260" stroke="#2b1d17" stroke-width="4"/>
+    <!-- eyes, brows, bindi, smile -->
+    <circle cx="174" cy="264" r="4.5" fill="#1d1410"/><circle cx="226" cy="264" r="4.5" fill="#1d1410"/>
+    <path d="M160 234 Q174 228 188 234" stroke="#2b1d17" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <path d="M212 234 Q226 228 240 234" stroke="#2b1d17" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <circle cx="200" cy="232" r="3.5" fill="#c2413b"/>
+    <path d="M196 284 Q200 292 204 284" stroke="#7a4527" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M184 306 Q200 316 216 306" stroke="#5a2f1e" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <!-- notebook with a chart -->
+    <rect x="232" y="404" width="96" height="70" rx="8" fill="#ffffff" transform="rotate(-8 280 440)"/>
+    <path d="M248 452 L268 436 L284 446 L306 420" stroke="#e0802e" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round" transform="rotate(-8 280 440)"/>
+  </g>
+</svg>
