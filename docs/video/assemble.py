@@ -39,26 +39,37 @@ def line(y, x=880, w=1990, h=46):
 
 
 CONSOLE = Path(__file__).parent / "out" / "console" / "agents.png"
+S3 = Path(__file__).parent / "out" / "s3"
+
+
+def tab(name, d, hl=()):
+    """A 1456x819 capture of the Discord message pane (already 16:9)."""
+    return {"img": S3 / f"{name}.png", "d": d, "full": True, "hl": hl}
+
+
+def ln(y, x=84, w=1300, h=36):
+    return (x, y - 6, w, h)
+
+
 SECTIONS = [
-    {"n": ["c1"], "lead": 0.5, "shots": [card("cover", 4.5)]},
-    {"n": ["c2"], "shots": [card("team", 10.0)]},
-    {"n": ["c2b"], "shots": [{"img": st / "team_live.jpg", "d": 7.5, "rect": (383, 82, 1113, 626), "tab": True}]},
-    {"n": ["c3"], "shots": [card("template", 4.0), {"img": CONSOLE, "d": 3.5, "rect": (0, 625, 1010, 568)}]},
-    {"n": ["p1"], "shots": [card("personas", 4.5)]},
-    {"n": ["p2"], "shots": [card("priya", 7.0)]},
-    {"n": ["p3"], "shots": [card("maya", 6.5)]},
-    {"n": ["r1"], "shots": [chat("r1_ask", 3.5), chat("r1_ask", 7.0, zoom(900), [line(1646, w=1450)])]},
-    {"n": ["r2"], "shots": [chat("r2_mentor", 6.0, zoom(900), [line(1316, w=2030, h=92)]), chat("r2_critic", 6.5, zoom(560), [line(874, w=1780)])]},
-    {"n": ["r3"], "shots": [chat("r3_correct", 6.0, zoom(620), [line(954, w=800)]), chat("r3_critic", 6.0, zoom(560), [line(798, w=1300), line(1238, w=720)])]},
-    {"n": ["m1"], "shots": [chat("m_outcomes", 9.0, zoom(380))]},
-    {"n": ["f1"], "shots": [chat("f_maya", 3.5)]},
-    {"n": ["f2"], "shots": [chat("f_maya", 7.0, zoom(560), [line(1022, w=1990)])]},
-    {"n": ["f3"], "shots": [chat("f_priya", 7.0, zoom(620), [line(1010, x=1170, w=540), line(1614, w=1960)])]},
-    {"n": ["i1"], "shots": [chat("i_q1", 6.0, zoom(560)), chat("i_score", 6.5, zoom(640), [line(1262, w=1080), line(1394, w=1100)])]},
-    {"n": ["i2"], "shots": [frame(1, 0.7), frame(6, 0.5), frame(12, 0.5), frame(16, 1.0), frame(16, 4.5, zoom(700), [line(1218, w=1160)])]},
-    {"n": ["w1"], "shots": [chat("w_draft", 4.5, zoom(560)), chat("w_critic", 5.0, zoom(560))]},
-    {"n": ["t1"], "shots": [card("checker", 7.5)]},
-    {"n": ["e1"], "lead": 0.4, "shots": [card("end", 6.0)]},
+    {"n": ["c1"], "lead": 0.5, "shots": [card("cover", 4.0)]},
+    {"n": ["c2"], "shots": [card("team", 12.5)]},
+    {"n": ["c2b"], "shots": [{"img": st / "team_live.jpg", "d": 5.5, "rect": (383, 82, 1113, 626), "tab": True}]},
+    {"n": ["c3"], "shots": [card("template", 3.5), {"img": CONSOLE, "d": 3.0, "rect": (0, 625, 1010, 568)}]},
+    {"n": ["p1"], "shots": [card("personas", 3.5)]},
+    {"n": ["p2"], "shots": [card("priya", 6.5)]},
+    {"n": ["p3"], "shots": [card("maya", 6.0)]},
+    {"n": ["r1"], "shots": [tab("p_scout", 5.5, [ln(248, w=920)]), tab("p_mentor", 5.5, [ln(410, w=1270)])]},
+    {"n": ["r2"], "shots": [tab("p_critic", 5.5, [ln(527, w=1310)]), tab("p_close", 5.0, [ln(425, w=1310, h=64)])]},
+    {"n": ["q1"], "shots": [tab("m_scout", 5.0, [ln(632, w=830)]), tab("m_mentor", 5.0, [ln(417, x=105, w=1030)])]},
+    {"n": ["q2"], "shots": [tab("m_funder", 4.0, [ln(320, w=1300, h=64)]), tab("m_close", 3.5, [ln(763, w=1290, h=64)])]},
+    {"n": ["f1"], "shots": [tab("f_maya", 4.0, [ln(46, w=1290)]), tab("f_priya", 4.0, [ln(425, x=760, w=345)])]},
+    {"n": ["m1"], "shots": [tab("m_out", 7.0, [ln(417, w=1290, h=64)])]},
+    {"n": ["i1"], "shots": [tab("i_q1", 5.0, [ln(132, w=1290)]), tab("i_score", 5.5, [ln(482, w=690), ln(603, x=105, w=1280)])]},
+    {"n": ["i2"], "shots": [tab("i_q2", 7.0, [ln(430, w=750)])]},
+    {"n": ["w1"], "shots": [tab("w_draft", 3.5, [ln(315, w=1310, h=64)]), tab("w_critic", 3.5, [ln(695, x=105, w=1290)])]},
+    {"n": ["t1"], "shots": [card("checker", 7.0)]},
+    {"n": ["e1"], "lead": 0.4, "shots": [card("end", 5.5)]},
 ]
 
 lines = {s["id"]: s["text"] for s in json.loads((here / "narration.json").read_text())}
@@ -89,7 +100,9 @@ for sec in SECTIONS:
         d = sh["d"] + (extra if i == len(sec["shots"]) - 1 else 0)
         frames = int(round(d * 30))
         marks = "".join(f"drawbox=x={a}:y={b}:w={c}:h={e}:color=0xFFD84D@0.38:t=fill:enable='gte(t,0.8)'," for a, b, c, e in sh.get("hl", ()))
-        if "rect" in sh:
+        if sh.get("full"):
+            base = f"{marks}scale=1920:1080:flags=lanczos"
+        elif "rect" in sh:
             x, y, w, h = sh["rect"]
             if sh["img"] == CONSOLE or sh.get("tab"):
                 base = f"crop={w}:{h}:{x}:{y},scale=1920:1080:flags=lanczos"

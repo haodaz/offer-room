@@ -8,7 +8,8 @@ const out = [];
 for (const s of segs) {
   if (fs.existsSync(`tts/${s.id}.wav`)) { let dur=0; try { execFileSync(F, ['-i', `tts/${s.id}.wav`], { stdio: 'pipe' }); } catch (e) { const m = /Duration: (\d+):(\d+):([\d.]+)/.exec(e.stderr.toString()); dur = m ? (+m[1])*3600 + (+m[2])*60 + (+m[3]) : 0; } out.push({ id: s.id, dur }); continue; }
   await new Promise((r) => setTimeout(r, 2000));
-  const r = await fetch('https://dashscope.aliyuncs.com/api/v1/services/aigc/multimodal-generation/generation', { method: 'POST', headers: { Authorization: `Bearer ${KEY}`, 'Content-Type': 'application/json' }, body: JSON.stringify({ model: 'qwen3-tts-flash', input: { text: s.text, voice: process.argv[2] || 'Cherry' } }) });
+  let r; for (let a = 0; a < 4; a++) { try { r = await fetch('https://dashscope.aliyuncs.com/api/v1/services/aigc/multimodal-generation/generation', { method: 'POST', headers: { Authorization: `Bearer ${KEY}`, 'Content-Type': 'application/json' }, body: JSON.stringify({ model: 'qwen3-tts-flash', input: { text: s.text, voice: process.argv[2] || 'Cherry' } }) }); break; } catch (e) { console.log('retry', s.id, a + 1); await new Promise((q) => setTimeout(q, 4000)); } }
+  if (!r) { console.log('fail', s.id, 'network'); continue; }
   const j = await r.json();
   const url = j.output?.audio?.url; if (!url) { console.log('fail', s.id, JSON.stringify(j).slice(0,200)); continue; }
   const buf = Buffer.from(await (await fetch(url)).arrayBuffer());
