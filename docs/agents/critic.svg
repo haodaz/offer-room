@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 480">
+<defs><clipPath id="c"><rect width="400" height="480" rx="40"/></clipPath></defs>
+<g clip-path="url(#c)"><rect width="400" height="480" fill="#e3ecfb"/>
+<circle cx="300" cy="110" r="44" fill="#b9cdf0"/>
+<path d="M0 320 L90 270 L170 300 L260 250 L400 300 L400 480 L0 480Z" fill="#c5d6f3"/>
+
+<path d="M88 480 C94 400 140 372 200 368 C260 372 306 400 312 480Z" fill="#33415c"/>
+<path d="M170 372 L200 430 L230 372" fill="#e9edf5"/><path d="M194 392 L200 440 L206 392Z" fill="#8a2d3b"/>
+<g transform="translate(262 392)"><rect width="92" height="16" rx="3" fill="#fff" stroke="#9fb2d6" stroke-width="2"/><rect y="18" width="92" height="16" rx="3" fill="#f3e7c9" stroke="#9fb2d6" stroke-width="2"/><rect y="36" width="92" height="16" rx="3" fill="#fff" stroke="#9fb2d6" stroke-width="2"/><rect y="54" width="92" height="16" rx="3" fill="#dfe8f7" stroke="#9fb2d6" stroke-width="2"/></g>
+<path d="M178 330 L178 376 C190 390 210 390 222 376 L222 330Z" fill="#ddb08d"/>
+<ellipse cx="200" cy="262" rx="64" ry="78" fill="#f0c9a8"/>
+<ellipse cx="136" cy="268" rx="10" ry="16" fill="#ddb08d"/><ellipse cx="264" cy="268" rx="10" ry="16" fill="#ddb08d"/>
+
+<path d="M134 254 C130 196 270 196 266 254 C262 226 250 212 236 208 L164 208 C150 214 138 232 134 254Z" fill="#d4d4d4"/>
+<path d="M160 270 L192 270 M208 270 L240 270" stroke="#33415c" stroke-width="4" stroke-linecap="round"/>
+<circle cx="176" cy="262" r="4" fill="#1d1410"/><circle cx="224" cy="262" r="4" fill="#1d1410"/>
+<path d="M142 286 C146 334 172 346 200 346 C228 346 254 334 258 286 C250 312 236 322 222 318 C214 312 186 312 178 318 C164 322 150 312 142 286Z" fill="#bdbdbd"/>
+<path d="M178 296 C188 290 212 290 222 296 C214 300 186 300 178 296Z" fill="#a8a8a8"/>
+<path d="M160 236 Q176 230 190 236" stroke="#9a9a9a" stroke-width="4.5" fill="none" stroke-linecap="round"/><path d="M210 236 Q224 230 240 236" stroke="#9a9a9a" stroke-width="4.5" fill="none" stroke-linecap="round"/><path d="M196 282 Q200 290 204 282" stroke="#c99573" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M188 308 Q200 312 212 308" stroke="#7a5a4a" stroke-width="4" fill="none" stroke-linecap="round"/></g></svg>

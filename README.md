@@ -12,18 +12,20 @@ show) and connects the steps (school list, materials, money, interviews and offe
 
 ## The team
 
-| Agent | Starts from | Tends to argue for | One to one |
-|---|---|---|---|
-| offer-scout | programs' official pages | feasibility: deadlines, letters, small print | the application calendar |
-| offer-mentor | advisors' papers, students, where they went (OpenAlex) | fit and outcomes over prestige | research direction |
-| offer-critic | the applicant's own record, read cold | honesty about what the record supports | cold reads of every draft |
-| offer-writer | the applicant's files | one coherent story | SOP, emails, recommender packets |
-| offer-funder | fees, waivers, fellowships, stipends, rent | money is part of fit | a funding plan, offer comparison |
-| offer-interviewer | one advisor's verified papers and page | depth that survives a follow-up | mock interviews, scored |
+| Agent | Real-world role | Starts from | Tends to argue for | One to one |
+|---|---|---|---|---|
+| offer-scout | admissions coordinator | programs' official pages | feasibility: deadlines, letters, small print | the application calendar |
+| offer-mentor | senior PhD student | advisors' papers, students, where they went (OpenAlex) | fit and outcomes over prestige | research direction |
+| offer-critic | committee reader | the applicant's own record, read cold | honesty about what the record supports | cold reads of every draft |
+| offer-writer | writing coach | the applicant's files | one coherent story | SOP, emails, recommender packets |
+| offer-funder | financial-aid counsellor | fees, waivers, fellowships, stipends, rent | money is part of fit | a funding plan, offer comparison |
+| offer-interviewer | the professor across the table (practice) | one advisor's verified papers and page | depth that survives a follow-up | mock interviews, scored |
 
 Each agent is a Claude Code session with its own harness (`agents/<name>/AGENT.md`: what it knows, its tools,
 its bias, its one-to-one work) and its own notebook (`agents/<name>/memory.md`), so it is the same person every
 time the applicant comes back.
+
+Portraits of the six agents and both applicants are in `docs/agents/gen/` (Meta Muse Image; invented people).
 
 ## How they work together
 

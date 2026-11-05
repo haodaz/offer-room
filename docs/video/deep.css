@@ -1,6 +1,6 @@
 *{box-sizing:border-box;margin:0}
 body{width:1600px;height:900px;background:#fff;font-family:Inter,sans-serif;color:#1f2330;display:flex;gap:56px;padding:64px 80px;align-items:center}
-.pic{width:430px;flex:none;border-radius:36px}
+.pic{width:430px;height:600px;flex:none;border-radius:36px;object-fit:cover;object-position:50% 30%}
 .right{flex:1}
 .eyebrow{font-size:18px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#6b7280}
 h1{font-size:50px;font-weight:800;margin-top:8px;letter-spacing:-.01em}

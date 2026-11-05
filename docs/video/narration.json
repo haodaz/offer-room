@@ -1,66 +1,20 @@
 [
- {
-  "id": "c1",
-  "text": "Applying to a PhD is a team sport that most students play alone."
- },
- {
-  "id": "c2",
-  "text": "Offer room gives one student a team, inside the chat app she already uses. Six AI agents, each starting from a different place: official pages, advisors' papers, her own record read cold, her story, money, and interview practice. They agree, add, or push back with evidence. She decides."
- },
- {
-  "id": "c3",
-  "text": "It's built with Switch. One template creates six Claude Code agents and five Discord rooms. The agents hand work to each other by mention, like teammates."
- },
- {
-  "id": "p1",
-  "text": "Meet two applicants. Both are fictional, and I type their side of the chat."
- },
- {
-  "id": "p2",
-  "text": "Priya, in Tamil Nadu, wants AI that understands her grandmother's Tamil. Her family set aside three hundred and fifty dollars: enough for two applications."
- },
- {
-  "id": "p3",
-  "text": "Maya, in El Paso, is the first in her family to go to college. She fixes speech recognition for people who switch between Spanish and English, and she has three hundred dollars saved."
- },
- {
-  "id": "r1",
-  "text": "Priya asks the team room: which two of Washington, Maryland and Cornell? Scout answers first, from the programs' own pages: Washington and Cornell, for cost and deadlines. Then it hands off."
- },
- {
-  "id": "r2",
-  "text": "Mentor disagrees, with papers: Maryland has the clearest lab for her work. Critic checks both against Priya's record and closes the round: where they agree, where they split, and what only she can decide."
- },
- {
-  "id": "r3",
-  "text": "Then she pushes back. Mentor runs a topic search, finds a Cornell professor it had missed, and says so first: I was wrong. Critic withdraws two of its own claims. The team now agrees on Washington and Cornell."
- },
- {
-  "id": "f1",
-  "text": "At the funding desk, one to one, the same question from both students."
- },
- {
-  "id": "f2",
-  "text": "For Maya, all three fees fit in her budget, and every school has a waiver she qualifies for, quoted line by line, with the date to ask."
- },
- {
-  "id": "f3",
-  "text": "For Priya, on a student visa, only Cornell's waiver is open. When a test-score page wouldn't load, the agent said so, and asked her."
- },
- {
-  "id": "i1",
-  "text": "In the interview room, the agent plays a real professor, built only from her public papers, and says it's practice. It scores each answer, and tells Priya to cut the line where she doubts herself."
- },
- {
-  "id": "i2",
-  "text": "Then it digs: points of what, and is it really code-switching? Priya owns the gap and names the experiment she'd run. Depth goes from three to five, and the next question digs again."
- },
- {
-  "id": "t1",
-  "text": "Every fact carries a source. A draft checker fails any sentence without one, and any paper no tool actually returned. And no agent sends, submits or pays. People do."
- },
- {
-  "id": "e1",
-  "text": "Getting in is the start, not the finish. Offer room. Built with Switch."
- }
+ {"id": "c1", "text": "Applying to a PhD is a team sport that most students play alone."},
+ {"id": "c2", "text": "Offer room gives one student a team, in the chat app she already uses: six AI agents, each starting from a different place. They agree, add, or push back with evidence. She decides."},
+ {"id": "c3", "text": "It's built with Switch. One template creates six Claude Code agents on this laptop, and five Discord rooms. They hand work to each other by mention, like teammates."},
+ {"id": "p1", "text": "Meet two applicants. Both are fictional, and I type their side of the chat."},
+ {"id": "p2", "text": "Priya, in Tamil Nadu, wants AI that understands her grandmother's Tamil. Her family can afford two applications."},
+ {"id": "p3", "text": "Maya, in El Paso, is the first in her family to go to college, with three hundred dollars saved."},
+ {"id": "r1", "text": "Priya asks the team: which two of Washington, Maryland and Cornell? Scout answers from the programs' own pages: Washington and Cornell, for cost and deadlines."},
+ {"id": "r2", "text": "Mentor disagrees, with papers: Maryland has the clearest lab. Critic checks both against her record, and closes the round: where they agree, where they split, and what only she can decide."},
+ {"id": "r3", "text": "She pushes back. Mentor runs a topic search, finds a Cornell professor it had missed, and says so first: I was wrong. Critic withdraws two claims, and the team agrees."},
+ {"id": "m1", "text": "Getting in is only the start. In the mentor room, she asks where each lab's students went. Mentor reads the professor's own students page: industry research, no faculty jobs. And it flags what it couldn't confirm."},
+ {"id": "f1", "text": "At the funding desk, both students ask the same question."},
+ {"id": "f2", "text": "Maya can apply everywhere. Every school has a waiver she qualifies for, quoted line by line, with the date to ask."},
+ {"id": "f3", "text": "Priya, on a student visa, has one. When a page wouldn't load, the agent said so, and asked her."},
+ {"id": "i1", "text": "In the interview room, the agent plays a real professor, built from her public papers, and says it's practice. It scores each answer, and tells Priya to cut the line where she doubts herself."},
+ {"id": "i2", "text": "Then it digs. Priya owns the gap and names the experiment she'd run. Depth goes from three to five."},
+ {"id": "w1", "text": "At the writing desk, writer drafts a fit paragraph from her files, and critic marks the sentence a tired reader would stop at."},
+ {"id": "t1", "text": "Every sentence carries a source. The checker fails a sentence without one, and any paper no tool returned. And no agent sends, submits or pays. People do."},
+ {"id": "e1", "text": "Getting in is the start, not the finish. Offer room. Built with Switch."}
 ]

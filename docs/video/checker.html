@@ -1,0 +1,26 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="card.css">
+<style>
+.term{flex:1;border-radius:22px;border:2px solid #e5e7eb;background:#f9fafb;padding:24px 26px;font-family:'JetBrains Mono',monospace;font-size:17px;line-height:1.6;color:#1f2330;white-space:pre-wrap}
+.term .cap{font-family:Inter,sans-serif;font-size:16px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#6b7280;margin-bottom:10px;white-space:normal}
+.ok{color:#047857;font-weight:600}.bad{color:#b91c1c;font-weight:600}.dim{color:#6b7280}
+</style></head><body>
+<div class="eyebrow">Trust, checked by code · real runs</div>
+<h1>The draft checker</h1>
+<div class="row">
+<div class="term"><div class="cap">Writer's draft for Cornell</div><span class="dim">$ tools/check_draft cornell-fit-vashistha-v1.md --limit 120</span>
+words (tags excluded): 114 / limit 120
+sentences: 5, untagged: 0
+<span class="ok">PASS</span></div>
+<div class="term"><div class="cap">A copy: one source removed, one paper made up</div><span class="dim">$ tools/check_draft broken-copy.md --limit 120</span>
+words (tags excluded): 123 / limit 120  <span class="bad">OVER</span>
+sentences: 6, untagged: 1
+<span class="bad">FAIL</span>
+ - over the limit by 3 words
+ - no source: I want to extend that kind of
+   evaluation to cultural grounding, ...
+ - [mentor: W4999999999] <span class="bad">no tool returned
+   this paper id</span></div>
+</div>
+</body></html>

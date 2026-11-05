@@ -3,3 +3,4 @@
 .env
 docs/video/out/
 docs/video/tts/
+docs/video/tts-qwen-out/

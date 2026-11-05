@@ -1,0 +1,33 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="card.css">
+<style>
+.code{border-radius:22px;border:2px solid #e5e7eb;background:#f9fafb;padding:26px 30px;font-family:'JetBrains Mono',monospace;font-size:19px;line-height:1.55;color:#1f2330;white-space:pre;margin-top:30px}
+.key{color:#4338ca;font-weight:600}.v{color:#047857}.d{color:#9ca3af}
+.wrap{display:flex;gap:36px;align-items:flex-start}
+.side{flex:1;padding-top:46px}
+.side p{font-size:22px;line-height:1.45;color:#374151;margin-bottom:18px}
+</style></head><body>
+<div class="eyebrow">Built with Switch · offer-room.template.yaml (excerpt)</div>
+<h1>One file, a whole team</h1>
+<div class="wrap">
+<div class="code"><span class="key">agents:</span>
+  - <span class="key">name:</span> <span class="v">offer-scout</span>        <span class="d"># official pages</span>
+  - <span class="key">name:</span> <span class="v">offer-mentor</span>       <span class="d"># advisors' papers</span>
+  - <span class="key">name:</span> <span class="v">offer-critic</span>       <span class="d"># her record, cold</span>
+  - <span class="key">name:</span> <span class="v">offer-writer</span>       <span class="d"># her story</span>
+  - <span class="key">name:</span> <span class="v">offer-funder</span>       <span class="d"># money</span>
+  - <span class="key">name:</span> <span class="v">offer-interviewer</span>  <span class="d"># practice</span>
+<span class="key">rooms:</span>
+  - <span class="key">name:</span> <span class="v">offer-room</span>         <span class="d"># the team</span>
+  - <span class="key">name:</span> <span class="v">interview-room</span>
+  - <span class="key">name:</span> <span class="v">mentor-room</span>
+  - <span class="key">name:</span> <span class="v">funding-desk</span>
+  - <span class="key">name:</span> <span class="v">writing-desk</span>
+    <span class="key">bridge:</span> <span class="v">"{bridge}"</span>    <span class="d"># Discord here</span></div>
+<div class="side">
+<p>Each agent is a Claude Code session with its own harness and notebook in the repo.</p>
+<p>Switch Console imports the file, creates the agents on this laptop, and opens the rooms in Discord.</p>
+<p>The same file runs on Slack, Teams, Telegram or Mattermost.</p>
+</div></div>
+</body></html>

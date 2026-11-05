@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 480">
+<defs><clipPath id="c"><rect width="400" height="480" rx="40"/></clipPath></defs>
+<g clip-path="url(#c)"><rect width="400" height="480" fill="#fdebdc"/>
+<circle cx="300" cy="110" r="44" fill="#f4c39b"/>
+<path d="M0 320 L90 270 L170 300 L260 250 L400 300 L400 480 L0 480Z" fill="#f6d2b5"/>
+
+<path d="M88 480 C94 400 140 372 200 368 C260 372 306 400 312 480Z" fill="#5a4a7a"/>
+<path d="M170 372 L200 420 L230 372 L230 480 L170 480Z" fill="#f6efe7"/>
+<path d="M170 372 L150 480 M230 372 L250 480" stroke="#463a62" stroke-width="5"/>
+<g transform="translate(252 400) rotate(-5)"><rect width="110" height="44" rx="8" fill="#fff" stroke="#e2833b" stroke-width="3"/>
+<text x="55" y="29" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="800" fill="#e2833b" text-anchor="middle" letter-spacing="2">PRACTICE</text></g>
+<path d="M178 330 L178 376 C190 390 210 390 222 376 L222 330Z" fill="#d29d78"/>
+<ellipse cx="200" cy="262" rx="64" ry="78" fill="#e3b08c"/>
+<ellipse cx="136" cy="268" rx="10" ry="16" fill="#d29d78"/><ellipse cx="264" cy="268" rx="10" ry="16" fill="#d29d78"/>
+<path d="M136 248 C128 186 272 180 266 246 C258 230 252 220 240 216 C222 226 186 220 172 210 C156 220 142 232 136 248Z" fill="#cfcfd6"/>
+<circle cx="176" cy="264" r="4.5" fill="#1d1410"/><circle cx="224" cy="264" r="4.5" fill="#1d1410"/><circle cx="176" cy="263" r="18" fill="none" stroke="#5a4a7a" stroke-width="4"/><circle cx="224" cy="263" r="18" fill="none" stroke="#5a4a7a" stroke-width="4"/><path d="M194 261 L206 261" stroke="#5a4a7a" stroke-width="4"/><path d="M160 236 Q176 230 190 236" stroke="#a9a9b2" stroke-width="4.5" fill="none" stroke-linecap="round"/><path d="M210 236 Q224 230 240 236" stroke="#a9a9b2" stroke-width="4.5" fill="none" stroke-linecap="round"/><path d="M196 282 Q200 290 204 282" stroke="#b98463" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M184 304 Q200 316 216 304" stroke="#5a2f1e" stroke-width="4" fill="none" stroke-linecap="round"/></g></svg>
