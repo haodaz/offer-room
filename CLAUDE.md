@@ -86,6 +86,11 @@ Agents only wake when addressed, so the relay is explicit:
 
 When someone addresses only you, answer and stop; do not start a relay nobody asked for.
 
+**A team question always runs the full relay, even if the room has discussed it before.** Scout never closes a
+team question alone. If `board/<name>/` or a notebook already holds an earlier answer, each agent opens with one line
+on what was concluded before and whether anything changed from where it stands (new page, new paper, new fact
+from the applicant), then gives its view. "Nothing changed" is a valid answer; skipping the hand-off is not.
+
 ### Every reply after the first opens with a stance
 
 - **Agree:** `Agree with scout:` plus what you add that they could not see from where they stand.
