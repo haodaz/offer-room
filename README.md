@@ -2,7 +2,7 @@
 
 **Six AI agents and an applicant in one team chat, built with [Switch](https://github.com/sandbox-quantum/switch) for the Flip the Switch hackathon (Nov 2026).**
 
-**Demo video (2:36):** https://youtu.be/M1i6dkZgmCE
+**Demo video (2:36):** https://youtu.be/M1i6dkZgmCE · **Build write-up:** [docs/blog.md](docs/blog.md) · **Thread:** https://x.com/vibedding/status/2118390441750200532
 
 Applying to a PhD program is a team sport most people play alone. Offer room gives an applicant a team that lives
 where they already talk (Discord here; the same template runs on Slack or Teams): agents that each start from a
