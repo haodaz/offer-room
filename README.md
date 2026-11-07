@@ -12,6 +12,20 @@ Getting in is the start, not the finish. The room looks long (the five years aft
 what you live on, where people from that lab went next), looks real (only what a page, a tool or your own files
 show) and connects the steps (school list, materials, money, interviews and offers are one story).
 
+## What it looks like
+
+Switch Console with the six agents running on this laptop, created from `offer-room.template.yaml`:
+
+![Switch Console: six agents online](docs/blog/7-switch-console.png)
+
+In Discord, a team question runs as a relay. Here critic closes a round for Priya, then corrects its own close:
+
+![A relay closing in offer-room](docs/blog/8-relay-close.png)
+
+Each agent shows up as its real-world role:
+
+![The six agents](docs/blog/1-team.png)
+
 ## The team
 
 | Agent | Real-world role | Starts from | Tends to argue for | One to one |
